@@ -4,6 +4,8 @@ import {Home} from './components/Home';
 import {Header} from './components/Header';
 import {Slider} from './components/Slider';
 import {Footer} from './components/Footer';
+import  MaliciousIpChecker  from './components/IP';
+import URLCheckComponent from './components/email';
 const FileUpload = () => {
   const [selectedFile, setSelectedFile] = useState(null);
   const [uploadStatus, setUploadStatus] = useState(null);
@@ -18,7 +20,7 @@ const FileUpload = () => {
     formData.append('file', selectedFile);
 
     try {
-      const response = await fetch(`${BASE_URL}/upload`, {
+      const response = await fetch(${BASE_URL}/upload, {
         method: 'POST',
         body: formData,
       });
@@ -31,14 +33,11 @@ const FileUpload = () => {
   };
     
   const divStyleOuter = {
-    backgroundColor: 'rgb(0,102,204)',
+    // backgroundColor: 'rgb(0,102,204)',
+    backgroundColor: 'rgb(0,0,0)',
     padding: 40
   };
   
-  const divStyleInner = {
-    paddingBottom: 117,
-    paddingTop: 30
-  };
   const divStyleSlider = {
     padding:30
   };
@@ -49,16 +48,16 @@ const FileUpload = () => {
         <div style={divStyleSlider}><Slider/></div>
         <div>
           <center>
-            <center><h1>Secure Sight</h1></center>
+            <div style={{ color: 'rgb(0,255,128)', fontSize: '4rem',fontWeight: 'bold',textShadow: '2px 2px 4px rgba(0,0,0,0.3)'}}><center>File Scanning</center></div>
             <br/>
             <input type="file" onChange={handleFileChange} />
             <button onClick={handleUpload} on style={{ backgroundColor: 'rgb(0,255,128)', padding: 10 }}>Upload</button>
             {uploadStatus && <p>{uploadStatus}</p>}
           </center>
-          <div style={divStyleInner}>
-            <Home/>
-          </div>
+          <Home/>
         </div>
+        <MaliciousIpChecker/>
+        <URLCheckComponent/>
       </div>
       <Footer/>
     </>
